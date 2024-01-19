@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme = ThemeData(
+  primaryColor: const Color(0xFF7F3DFF),
   textTheme: TextTheme(
     // bodySmall for captions
     bodySmall: GoogleFonts.poppins(
@@ -31,7 +32,9 @@ ThemeData appTheme = ThemeData(
     ),
   ),
   brightness: Brightness.light,
-  appBarTheme: const AppBarTheme(),
+  appBarTheme: const AppBarTheme(
+    centerTitle: true,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: TextStyle(
       fontSize: 16.w,

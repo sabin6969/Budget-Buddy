@@ -1,3 +1,4 @@
+import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ class _LoginViewState extends State<LoginView> {
     size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         elevation: 0,
         backgroundColor: const Color(0xFF7F3DFF),
         title: Text(
@@ -100,6 +100,7 @@ class _LoginViewState extends State<LoginView> {
                   backgroundColor: const MaterialStatePropertyAll(
                     Color(0xFF7F3DFF),
                   ),
+                  elevation: const MaterialStatePropertyAll(0),
                   fixedSize: MaterialStatePropertyAll(
                     Size(
                       343.w,
@@ -108,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   shape: MaterialStatePropertyAll(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.w),
+                      borderRadius: BorderRadius.circular(16.w),
                     ),
                   ),
                 ),
@@ -125,7 +126,9 @@ class _LoginViewState extends State<LoginView> {
                 height: 33.h,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, RouteNames.forgotPasswordView);
+                },
                 child: Text(
                   "Forgot Password?",
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
