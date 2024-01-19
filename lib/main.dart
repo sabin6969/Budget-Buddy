@@ -1,10 +1,15 @@
 import 'package:budgetbuddy/constants/app_theme.dart';
+import 'package:budgetbuddy/constants/rotutes.dart';
 import 'package:budgetbuddy/views/boading/boading_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 }
 
 late Size size;
@@ -24,6 +29,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: const BoadingView(),
           theme: appTheme,
+          onGenerateRoute: Routes.generateRoutes,
         );
       },
     );

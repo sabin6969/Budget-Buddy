@@ -1,8 +1,10 @@
 import 'package:budgetbuddy/constants/app_image_path.dart';
 import 'package:budgetbuddy/constants/app_strings.dart';
+import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
 import 'package:budgetbuddy/views/boading/boading_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoadingView extends StatefulWidget {
@@ -63,8 +65,9 @@ class _BoadingViewState extends State<BoadingView> {
                   ),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor:
-                          const MaterialStatePropertyAll(Colors.blue),
+                      backgroundColor: const MaterialStatePropertyAll(
+                        Color(0xFF7F3DFF),
+                      ),
                       fixedSize: MaterialStatePropertyAll(
                         Size(
                           size.width * 0.9,
@@ -75,11 +78,14 @@ class _BoadingViewState extends State<BoadingView> {
                         StadiumBorder(),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                          context, RouteNames.loginView);
+                    },
                     child: Text(
                       "Get Started",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18.w,
                         color: Colors.grey.shade200,
                       ),
                     ),
@@ -115,7 +121,9 @@ class _BoadingViewState extends State<BoadingView> {
                   TextButton(
                     onPressed: () {
                       _controller.nextPage(
-                        duration: const Duration(milliseconds: 300),
+                        duration: const Duration(
+                          milliseconds: 300,
+                        ),
                         curve: Curves.easeOut,
                       );
                     },
