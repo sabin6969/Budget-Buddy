@@ -1,5 +1,6 @@
 import 'package:budgetbuddy/constants/app_image_path.dart';
 import 'package:budgetbuddy/constants/app_strings.dart';
+import 'package:budgetbuddy/utils/custom_auth_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,35 +48,12 @@ class _ForgotPasswordEmailSentViewState
                 SizedBox(
                   height: 190.h,
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: const MaterialStatePropertyAll(
-                      Color(0xFF7F3DFF),
-                    ),
-                    fixedSize: MaterialStatePropertyAll(
-                      Size(
-                        343.w,
-                        56.h,
-                      ),
-                    ),
-                    elevation: const MaterialStatePropertyAll(0),
-                    shape: MaterialStatePropertyAll(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.w),
-                      ),
-                    ),
-                  ),
+                CustomAuthButton(
+                  buttonName: "Back to Login",
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text(
-                    "Back to Login",
-                    style: TextStyle(
-                      fontSize: 18.w,
-                      color: Colors.grey.shade200,
-                    ),
-                  ),
-                ),
+                )
               ],
             ),
           ),

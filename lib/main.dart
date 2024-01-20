@@ -1,6 +1,6 @@
 import 'package:budgetbuddy/constants/app_theme.dart';
 import 'package:budgetbuddy/constants/rotutes.dart';
-import 'package:budgetbuddy/views/boading/boading_view.dart';
+import 'package:budgetbuddy/views/boarding/boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: "Budget Buddy",
           debugShowCheckedModeBanner: false,
-          home: const BoadingView(),
+          home: const BoardingView(),
           theme: appTheme,
           onGenerateRoute: Routes.generateRoutes,
         );

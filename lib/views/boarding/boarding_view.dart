@@ -2,19 +2,19 @@ import 'package:budgetbuddy/constants/app_image_path.dart';
 import 'package:budgetbuddy/constants/app_strings.dart';
 import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
-import 'package:budgetbuddy/views/boading/boading_container.dart';
+import 'package:budgetbuddy/views/boarding/boading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class BoadingView extends StatefulWidget {
-  const BoadingView({super.key});
+class BoardingView extends StatefulWidget {
+  const BoardingView({super.key});
 
   @override
-  State<BoadingView> createState() => _BoadingViewState();
+  State<BoardingView> createState() => _BoardingViewState();
 }
 
-class _BoadingViewState extends State<BoadingView> {
+class _BoardingViewState extends State<BoardingView> {
   final PageController _controller = PageController();
   bool _isLastPage = false;
 

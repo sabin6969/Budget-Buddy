@@ -1,5 +1,6 @@
 import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
+import 'package:budgetbuddy/utils/custom_auth_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -95,32 +96,9 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(
                 height: 50.h,
               ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: const MaterialStatePropertyAll(
-                    Color(0xFF7F3DFF),
-                  ),
-                  elevation: const MaterialStatePropertyAll(0),
-                  fixedSize: MaterialStatePropertyAll(
-                    Size(
-                      343.w,
-                      56.h,
-                    ),
-                  ),
-                  shape: MaterialStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.w),
-                    ),
-                  ),
-                ),
+              CustomAuthButton(
+                buttonName: "Login",
                 onPressed: () {},
-                child: Text(
-                  "Login",
-                  style: TextStyle(
-                    fontSize: 18.w,
-                    color: Colors.grey.shade200,
-                  ),
-                ),
               ),
               SizedBox(
                 height: 33.h,
@@ -150,7 +128,9 @@ class _LoginViewState extends State<LoginView> {
                         ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteNames.signupView);
+                    },
                     child: Text(
                       "Sign Up",
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
