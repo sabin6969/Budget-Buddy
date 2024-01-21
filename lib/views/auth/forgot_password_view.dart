@@ -1,9 +1,10 @@
 import 'package:budgetbuddy/constants/app_strings.dart';
-import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/utils/custom_auth_button.dart';
+import 'package:budgetbuddy/view_models/forgot_password_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});
@@ -13,8 +14,19 @@ class ForgotPasswordView extends StatefulWidget {
 }
 
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final ForgotPasswordViewModel forgotPasswordViewModel =
+        Provider.of<ForgotPasswordViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -49,11 +61,21 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               SizedBox(
                 height: 46.h,
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: "Email",
-                  prefixIcon: Icon(
-                    CupertinoIcons.mail,
+              Form(
+                key: _globalKey,
+                child: TextFormField(
+                  controller: _emailController,
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12.w,
+                      ),
+                  validator: (value) =>
+                      forgotPasswordViewModel.validateEmail(value!),
+                  decoration: const InputDecoration(
+                    hintText: "Email",
+                    prefixIcon: Icon(
+                      CupertinoIcons.mail,
+                    ),
                   ),
                 ),
               ),
@@ -63,8 +85,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               CustomAuthButton(
                 buttonName: "Continue",
                 onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, RouteNames.forgotPasswordEmailSentView);
+                  forgotPasswordViewModel.sendResetLink(_globalKey);
                 },
               )
             ],

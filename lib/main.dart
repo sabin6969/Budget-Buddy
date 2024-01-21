@@ -1,9 +1,13 @@
 import 'package:budgetbuddy/constants/app_theme.dart';
 import 'package:budgetbuddy/constants/rotutes.dart';
+import 'package:budgetbuddy/view_models/forgot_password_view_model.dart';
+import 'package:budgetbuddy/view_models/login_view_model.dart';
+import 'package:budgetbuddy/view_models/signup_view_model.dart';
 import 'package:budgetbuddy/views/boarding/boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -24,12 +28,27 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: "Budget Buddy",
-          debugShowCheckedModeBanner: false,
-          home: const BoardingView(),
-          theme: appTheme,
-          onGenerateRoute: Routes.generateRoutes,
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) => LoginViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => ForgotPasswordViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => SignUpViewModel(),
+            )
+          ],
+          builder: (context, child) {
+            return MaterialApp(
+              title: "Budget Buddy",
+              debugShowCheckedModeBanner: false,
+              home: const BoardingView(),
+              theme: appTheme,
+              onGenerateRoute: Routes.generateRoutes,
+            );
+          },
         );
       },
     );

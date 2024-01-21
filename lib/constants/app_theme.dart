@@ -36,8 +36,13 @@ ThemeData appTheme = ThemeData(
     centerTitle: true,
   ),
   inputDecorationTheme: InputDecorationTheme(
+    errorStyle: TextStyle(
+      fontSize: 11.w,
+      color: Colors.black,
+      fontWeight: FontWeight.normal,
+    ),
     hintStyle: TextStyle(
-      fontSize: 16.w,
+      fontSize: 14.w,
       fontWeight: FontWeight.w500,
       color: const Color(0xFF91919F),
     ),
