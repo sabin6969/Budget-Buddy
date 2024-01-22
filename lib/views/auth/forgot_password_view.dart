@@ -29,7 +29,6 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         Provider.of<ForgotPasswordViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text("Forgot Password"),
       ),

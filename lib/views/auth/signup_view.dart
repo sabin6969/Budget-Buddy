@@ -32,7 +32,6 @@ class _SignupViewState extends State<SignupView> {
     size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         title: const Text("Sign Up"),
         backgroundColor: Theme.of(context).primaryColor,
       ),

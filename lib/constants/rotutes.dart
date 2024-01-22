@@ -3,6 +3,7 @@ import 'package:budgetbuddy/views/auth/forgot_password_email_sent_view.dart';
 import 'package:budgetbuddy/views/auth/forgot_password_view.dart';
 import 'package:budgetbuddy/views/auth/login_view.dart';
 import 'package:budgetbuddy/views/auth/signup_view.dart';
+import 'package:budgetbuddy/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -22,6 +23,10 @@ class Routes {
         );
       case RouteNames.signupView:
         return MaterialPageRoute(builder: (context) => const SignupView());
+      case RouteNames.homeView:
+        return MaterialPageRoute(
+          builder: (context) => const HomeView(),
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(),

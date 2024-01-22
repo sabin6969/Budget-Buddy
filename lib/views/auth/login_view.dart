@@ -38,7 +38,6 @@ class _LoginViewState extends State<LoginView> {
     size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: const Color(0xFF7F3DFF),
         title: Text(
           "Login",

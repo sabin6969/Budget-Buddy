@@ -35,6 +35,7 @@ ThemeData appTheme = ThemeData(
   brightness: Brightness.light,
   appBarTheme: const AppBarTheme(
     centerTitle: true,
+    elevation: 0,
   ),
   inputDecorationTheme: InputDecorationTheme(
     errorStyle: TextStyle(

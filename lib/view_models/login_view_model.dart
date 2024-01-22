@@ -1,3 +1,4 @@
+import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/utils/dialog.dart';
 import 'package:budgetbuddy/utils/toast_message.dart';
 import 'package:budgetbuddy/utils/validations.dart';
@@ -20,6 +21,7 @@ class LoginViewModel with ChangeNotifier, Validation {
         // hiding progress dialog
         Navigator.of(context).pop();
         showToastMessage(message: "Login Sucess");
+        Navigator.pushReplacementNamed(context, RouteNames.homeView);
       }).onError((error, stackTrace) {
         // hiding progress dialog
         Navigator.of(context).pop();
