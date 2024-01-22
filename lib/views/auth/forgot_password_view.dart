@@ -85,7 +85,11 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               CustomAuthButton(
                 buttonName: "Continue",
                 onPressed: () {
-                  forgotPasswordViewModel.sendResetLink(_globalKey);
+                  forgotPasswordViewModel.sendResetLink(
+                    globalKey: _globalKey,
+                    context: context,
+                    email: _emailController.text,
+                  );
                 },
               )
             ],

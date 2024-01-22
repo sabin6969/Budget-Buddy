@@ -16,6 +16,7 @@ class _ForgotPasswordEmailSentViewState
     extends State<ForgotPasswordEmailSentView> {
   @override
   Widget build(BuildContext context) {
+    final email = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

@@ -18,6 +18,12 @@ class _SignupViewState extends State<SignupView> {
   final ValueNotifier<bool> _isHidden = ValueNotifier(true);
   final ValueNotifier<bool> _isChecked = ValueNotifier(true);
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +49,10 @@ class _SignupViewState extends State<SignupView> {
                   height: 42.h,
                 ),
                 TextFormField(
+                  controller: _nameController,
+                  onFieldSubmitted: (value) =>
+                      FocusScope.of(context).requestFocus(_emailFocusNode),
+                  focusNode: _nameFocusNode,
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.normal,
                         fontSize: 12.w,
@@ -63,6 +73,10 @@ class _SignupViewState extends State<SignupView> {
                   height: 24.h,
                 ),
                 TextFormField(
+                  controller: _emailController,
+                  onFieldSubmitted: (value) =>
+                      FocusScope.of(context).requestFocus(_passwordFocusNode),
+                  focusNode: _emailFocusNode,
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.normal,
                         fontSize: 12.w,
@@ -84,6 +98,8 @@ class _SignupViewState extends State<SignupView> {
                   valueListenable: _isHidden,
                   builder: (context, value, child) {
                     return TextFormField(
+                      controller: _passwordController,
+                      focusNode: _passwordFocusNode,
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
                             fontWeight: FontWeight.normal,
                             fontSize: 12.w,
@@ -165,8 +181,11 @@ class _SignupViewState extends State<SignupView> {
                   buttonName: "Sign Up",
                   onPressed: () {
                     signUpViewModel.signUp(
-                      _globalKey,
-                      _isChecked.value,
+                      globalKey: _globalKey,
+                      isChecked: _isChecked.value,
+                      context: context,
+                      email: _emailController.text,
+                      password: _passwordController.text,
                     );
                   },
                 ),

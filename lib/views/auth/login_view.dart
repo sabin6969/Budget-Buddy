@@ -1,3 +1,4 @@
+import 'package:budgetbuddy/constants/app_image_path.dart';
 import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
 import 'package:budgetbuddy/utils/custom_auth_button.dart';
@@ -19,6 +20,8 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -58,6 +61,9 @@ class _LoginViewState extends State<LoginView> {
                   height: 72.h,
                 ),
                 TextFormField(
+                  onFieldSubmitted: (value) =>
+                      FocusScope.of(context).requestFocus(_passwordFocusNode),
+                  focusNode: _emailFocusNode,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) => loginViewModel.validateEmail(value!),
                   controller: _emailController,
@@ -80,6 +86,7 @@ class _LoginViewState extends State<LoginView> {
                   valueListenable: _isHidden,
                   builder: (context, value, child) {
                     return TextFormField(
+                      focusNode: _passwordFocusNode,
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
                             fontWeight: FontWeight.normal,
                             fontSize: 12.w,
@@ -118,8 +125,21 @@ class _LoginViewState extends State<LoginView> {
                 CustomAuthButton(
                   buttonName: "Login",
                   onPressed: () {
-                    loginViewModel.login(_globalKey);
+                    loginViewModel.login(
+                      globalKey: _globalKey,
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      context: context,
+                    );
                   },
+                ),
+                SizedBox(
+                  height: 33.h,
+                ),
+                CustomAuthButton(
+                  buttonName: "Sign Up with Google",
+                  onPressed: () {},
+                  logoPath: AppImagePath.googleLogo,
                 ),
                 SizedBox(
                   height: 33.h,

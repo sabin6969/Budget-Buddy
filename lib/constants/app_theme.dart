@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme = ThemeData(
   primaryColor: const Color(0xFF7F3DFF),
+  primarySwatch: Colors.purple,
   textTheme: TextTheme(
     // bodySmall for captions
     bodySmall: GoogleFonts.poppins(
