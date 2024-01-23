@@ -1,4 +1,5 @@
 import 'package:budgetbuddy/constants/route_names.dart';
+import 'package:budgetbuddy/views/add_expense_view.dart';
 import 'package:budgetbuddy/views/auth/forgot_password_email_sent_view.dart';
 import 'package:budgetbuddy/views/auth/forgot_password_view.dart';
 import 'package:budgetbuddy/views/auth/login_view.dart';
@@ -27,6 +28,8 @@ class Routes {
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
         );
+      case RouteNames.addExpenseView:
+        return MaterialPageRoute(builder: (context) => const AddExpenseView());
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(),

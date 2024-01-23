@@ -1,6 +1,7 @@
 import 'package:budgetbuddy/constants/app_theme.dart';
 import 'package:budgetbuddy/constants/rotutes.dart';
 import 'package:budgetbuddy/firebase_options.dart';
+import 'package:budgetbuddy/view_models/add_expense_view_model.dart';
 import 'package:budgetbuddy/view_models/forgot_password_view_model.dart';
 import 'package:budgetbuddy/view_models/login_view_model.dart';
 import 'package:budgetbuddy/view_models/signup_view_model.dart';
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (context) => SignUpViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => AddExpenseViewModel(),
             )
           ],
           builder: (context, child) {
