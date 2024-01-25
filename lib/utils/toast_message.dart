@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 void showToastMessage({required String message}) {
   Fluttertoast.showToast(
     msg: message,
-    toastLength: Toast.LENGTH_SHORT,
+    toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.CENTER,
     timeInSecForIosWeb: 1,
     backgroundColor: Colors.red,

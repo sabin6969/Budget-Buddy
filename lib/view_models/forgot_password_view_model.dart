@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:budgetbuddy/constants/firebase_services.dart';
 import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/utils/dialog.dart';
@@ -13,26 +15,40 @@ class ForgotPasswordViewModel with Validation, ChangeNotifier {
     required BuildContext context,
   }) async {
     if (globalKey.currentState!.validate()) {
-      showLoadingDialog(context);
-      FirebaseServies.firebaseAuth.sendPasswordResetEmail(email: email).then(
-        (value) {
-          Navigator.pop(context);
-          Navigator.pushReplacementNamed(
-            context,
-            RouteNames.forgotPasswordEmailSentView,
-            arguments: email,
-          );
-        },
-      ).onError(
-        (error, stackTrace) {
-          Navigator.pop(context);
-          if (error is FirebaseAuthException) {
-            showToastMessage(message: error.message!);
-            return;
-          }
-          showToastMessage(message: error.toString());
-        },
-      );
+      try {
+        showLoadingDialog(context);
+        FirebaseServies.firebaseAuth
+            .sendPasswordResetEmail(email: email)
+            .timeout(
+              const Duration(seconds: 7),
+              onTimeout: () => throw TimeoutException(
+                "Check your internet connection",
+              ),
+            )
+            .then(
+          (value) {
+            Navigator.pop(context);
+            Navigator.pushReplacementNamed(
+              context,
+              RouteNames.forgotPasswordEmailSentView,
+              arguments: email,
+            );
+          },
+        ).onError(
+          (error, stackTrace) {
+            Navigator.pop(context);
+            if (error is FirebaseAuthException) {
+              showToastMessage(message: error.message!);
+              return;
+            }
+            showToastMessage(message: error.toString());
+          },
+        );
+      } on TimeoutException {
+        showToastMessage(message: "Check your internet connection");
+      } catch (e) {
+        showToastMessage(message: e.toString());
+      }
     }
   }
 }

@@ -3,7 +3,6 @@ import 'package:budgetbuddy/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:circular_menu/circular_menu.dart';
 
 class HomeView extends StatefulWidget {

@@ -13,6 +13,26 @@ class AddExpenseView extends StatefulWidget {
 }
 
 class _AddExpenseViewState extends State<AddExpenseView> {
+  DateTime now = DateTime.now();
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final FocusNode _titleNode = FocusNode();
+  final FocusNode _descriptionNode = FocusNode();
+  final FocusNode _amountNode = FocusNode();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _amountController.dispose();
+    _titleNode.dispose();
+    _amountNode.dispose();
+    _descriptionNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final AddExpenseViewModel addExpenseViewModel = Provider.of(context);
@@ -74,7 +94,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: size.height * 0.35),
+                padding: EdgeInsets.only(top: size.height * 0.25),
                 child: Container(
                   height: size.height - size.height * 0.35,
                   width: size.width,
@@ -93,37 +113,147 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                     padding: EdgeInsets.symmetric(
                       horizontal: 20.w,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextFormField(),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            if (value == "") {
-                              addExpenseViewModel.changeAmount(0);
-                            } else {
-                              addExpenseViewModel.changeAmount(
-                                int.tryParse(value) ?? 0,
+                    child: Form(
+                      key: _globalKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextFormField(
+                            onFieldSubmitted: (value) => FocusScope.of(context)
+                                .requestFocus(_descriptionNode),
+                            focusNode: _titleNode,
+                            validator: (value) => value!.trim().isEmpty
+                                ? "This field is required"
+                                : null,
+                            controller: _titleController,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium!
+                                .copyWith(
+                                  fontSize: 14.w,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            decoration: InputDecoration(
+                              labelText: "Enter expense title",
+                              prefixIcon: Icon(
+                                Icons.title_rounded,
+                                size: 22.w,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          TextFormField(
+                            onFieldSubmitted: (value) => FocusScope.of(context)
+                                .requestFocus(_amountNode),
+                            focusNode: _descriptionNode,
+                            validator: (value) => value!.trim().isEmpty
+                                ? "This field is required"
+                                : null,
+                            controller: _descriptionController,
+                            maxLines: 2,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium!
+                                .copyWith(
+                                  fontSize: 14.w,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            decoration: InputDecoration(
+                              labelText: "Enter expense description",
+                              prefixIcon: Icon(
+                                Icons.description,
+                                size: 22.w,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          TextFormField(
+                            focusNode: _amountNode,
+                            validator: (value) => value!.trim().isEmpty
+                                ? "This field is required"
+                                : null,
+                            controller: _amountController,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium!
+                                .copyWith(
+                                  fontSize: 14.w,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            decoration: InputDecoration(
+                              labelText: "Enter spent amount",
+                              prefixIcon: Icon(
+                                Icons.currency_rupee,
+                                size: 22.w,
+                              ),
+                            ),
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) {
+                              if (value == "") {
+                                addExpenseViewModel.changeAmount(0);
+                              } else {
+                                addExpenseViewModel.changeAmount(
+                                  num.tryParse(value) ?? 0,
+                                );
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Consumer<AddExpenseViewModel>(
+                            builder: (context, value, child) {
+                              return MaterialButton(
+                                elevation: 0,
+                                color: Colors.red,
+                                height: size.height * 0.07,
+                                minWidth: size.width,
+                                shape: const StadiumBorder(),
+                                onPressed: () {
+                                  addExpenseViewModel.pickDate(context);
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      addExpenseViewModel.getFormatedDate,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium!
+                                          .copyWith(
+                                            fontSize: 14.w,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white,
+                                          ),
+                                    ),
+                                    SizedBox(
+                                      width: size.width * 0.05,
+                                    ),
+                                    Icon(
+                                      Icons.date_range,
+                                      size: 22.w,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
                               );
-                            }
-                          },
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        TextFormField(),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        CustomAuthButton(
-                          buttonName: "Continue",
-                          onPressed: () {},
-                        )
-                      ],
+                            },
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          CustomAuthButton(
+                            buttonName: "Add Expense",
+                            onPressed: () {
+                              if (_globalKey.currentState!.validate()) {}
+                            },
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

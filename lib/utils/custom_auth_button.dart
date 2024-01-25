@@ -32,10 +32,8 @@ class CustomAuthButton extends StatelessWidget {
             56.h,
           ),
         ),
-        shape: MaterialStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.w),
-          ),
+        shape: const MaterialStatePropertyAll(
+          StadiumBorder(),
         ),
       ),
       onPressed: onPressed,

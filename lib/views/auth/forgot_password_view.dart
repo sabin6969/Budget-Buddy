@@ -63,6 +63,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               Form(
                 key: _globalKey,
                 child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.normal,
