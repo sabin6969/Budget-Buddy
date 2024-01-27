@@ -6,4 +6,5 @@ class RouteNames {
       "/forgotPasswordEmailSentView";
   static const String homeView = "/homeView";
   static const String addExpenseView = "/addExpenseView";
+  static const String profileView = "/profileView";
 }

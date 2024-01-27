@@ -1,9 +1,12 @@
+import 'package:budgetbuddy/constants/firebase_services.dart';
 import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
+import 'package:budgetbuddy/view_models/home_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:circular_menu/circular_menu.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -14,16 +17,45 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   GlobalKey<CircularMenuState> key = GlobalKey<CircularMenuState>();
+  late HomeViewModel _homeViewModel;
+
   @override
   Widget build(BuildContext context) {
+    _homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
+    _homeViewModel.getSelfData();
     size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.person,
-          ),
+        leading: Consumer<HomeViewModel>(
+          builder: (context, value, child) {
+            return IconButton(
+              onPressed: value.isLoading
+                  ? null
+                  : () {
+                      Navigator.pushNamed(
+                        context,
+                        RouteNames.profileView,
+                        arguments: FirebaseServies.me,
+                      );
+                    },
+              icon: value.isLoading
+                  ? const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    )
+                  : FirebaseServies.me.profileImageUrl == null
+                      ? Icon(
+                          Icons.person,
+                          size: 26.w,
+                        )
+                      : CircleAvatar(
+                          radius: 26.w,
+                          backgroundImage: NetworkImage(
+                            FirebaseServies.me.profileImageUrl!,
+                          ),
+                        ),
+            );
+          },
         ),
         actions: [
           IconButton(
@@ -34,6 +66,16 @@ class _HomeViewState extends State<HomeView> {
             ),
           )
         ],
+      ),
+      body: Consumer<HomeViewModel>(
+        builder: (context, value, child) {
+          if (value.isLoading) {
+            return const LinearProgressIndicator();
+          }
+          return const Center(
+            child: Text("Loaded"),
+          );
+        },
       ),
       floatingActionButton: CircularMenu(
         toggleButtonSize: size.width * 0.09,

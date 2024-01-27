@@ -1,10 +1,12 @@
 import 'package:budgetbuddy/constants/route_names.dart';
+import 'package:budgetbuddy/models/user.dart';
 import 'package:budgetbuddy/views/add_expense_view.dart';
 import 'package:budgetbuddy/views/auth/forgot_password_email_sent_view.dart';
 import 'package:budgetbuddy/views/auth/forgot_password_view.dart';
 import 'package:budgetbuddy/views/auth/login_view.dart';
 import 'package:budgetbuddy/views/auth/signup_view.dart';
 import 'package:budgetbuddy/views/home_view.dart';
+import 'package:budgetbuddy/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -30,6 +32,13 @@ class Routes {
         );
       case RouteNames.addExpenseView:
         return MaterialPageRoute(builder: (context) => const AddExpenseView());
+      case RouteNames.profileView:
+        return MaterialPageRoute(builder: (context) {
+          UserModel? user = settings.arguments as UserModel;
+          return ProfileView(
+            me: user,
+          );
+        });
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(),

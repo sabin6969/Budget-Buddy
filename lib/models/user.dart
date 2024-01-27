@@ -1,20 +1,24 @@
-class User {
+class UserModel {
   String? memberSince;
   String? displayName;
   String? description;
   String? profileImageUrl;
+  String? uid;
 
-  User(
-      {this.memberSince,
-      this.displayName,
-      this.description,
-      this.profileImageUrl});
+  UserModel({
+    this.memberSince,
+    this.displayName,
+    this.description,
+    this.profileImageUrl,
+    this.uid,
+  });
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     memberSince = json["memberSince"];
     displayName = json["displayName"];
     description = json["description"];
     profileImageUrl = json["profileImageURL"];
+    uid = json["uid"];
   }
 
   Map<String, dynamic> toJson() {
@@ -23,6 +27,7 @@ class User {
     data["displayName"] = displayName;
     data["description"] = description;
     data["profileImageURL"] = profileImageUrl;
+    data["uid"] = uid;
     return data;
   }
 }

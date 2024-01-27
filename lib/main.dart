@@ -3,6 +3,7 @@ import 'package:budgetbuddy/constants/rotutes.dart';
 import 'package:budgetbuddy/firebase_options.dart';
 import 'package:budgetbuddy/view_models/add_expense_view_model.dart';
 import 'package:budgetbuddy/view_models/forgot_password_view_model.dart';
+import 'package:budgetbuddy/view_models/home_view_model.dart';
 import 'package:budgetbuddy/view_models/login_view_model.dart';
 import 'package:budgetbuddy/view_models/signup_view_model.dart';
 import 'package:budgetbuddy/views/boarding/boarding_view.dart';
@@ -13,16 +14,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  // establishing connection between framework and render engine
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // setting the orientation of mobile app
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
   runApp(const MyApp());
 }
 
+// global object to access size of device
 late Size size;
 
 class MyApp extends StatelessWidget {
@@ -48,6 +52,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (context) => AddExpenseViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => HomeViewModel(),
             )
           ],
           builder: (context, child) {

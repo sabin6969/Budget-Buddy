@@ -185,6 +185,7 @@ class _SignupViewState extends State<SignupView> {
                       context: context,
                       email: _emailController.text,
                       password: _passwordController.text,
+                      displayName: _nameController.text,
                     );
                   },
                 ),
