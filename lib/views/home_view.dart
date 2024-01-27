@@ -2,6 +2,7 @@ import 'package:budgetbuddy/constants/firebase_services.dart';
 import 'package:budgetbuddy/constants/route_names.dart';
 import 'package:budgetbuddy/main.dart';
 import 'package:budgetbuddy/view_models/home_view_model.dart';
+import 'package:budgetbuddy/views/profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,10 +33,13 @@ class _HomeViewState extends State<HomeView> {
               onPressed: value.isLoading
                   ? null
                   : () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        RouteNames.profileView,
-                        arguments: FirebaseServies.me,
+                        MaterialPageRoute(
+                          builder: (context) => ProfileView(
+                            me: FirebaseServies.me,
+                          ),
+                        ),
                       );
                     },
               icon: value.isLoading

@@ -4,4 +4,5 @@ class AppImagePath {
   static const String plan = "assets/images/plan.png";
   static const String emailSent = "assets/images/email_sent.png";
   static const String googleLogo = "assets/logo/google_logo.png";
+  static const String defaultAvatar = "assets/images/dafault_avatar.jpeg";
 }

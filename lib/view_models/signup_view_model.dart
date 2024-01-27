@@ -29,7 +29,7 @@ class SignUpViewModel with ChangeNotifier, Validation {
           .then((value) {
         Navigator.of(context).pop();
         user = UserModel(
-          memberSince: DateTime.now().toString(),
+          memberSince: DateTime.now().toString().substring(0, 10),
           displayName: displayName,
           uid: value.user!.uid,
           description: "Hey i am using Budget Buddy",

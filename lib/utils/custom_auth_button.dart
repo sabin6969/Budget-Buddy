@@ -18,7 +18,7 @@ class CustomAuthButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: logoPath == null
             ? const MaterialStatePropertyAll(
-                Color(0xFF7F3DFF),
+                Colors.purple,
               )
             : MaterialStatePropertyAll(
                 Colors.grey.shade200,
