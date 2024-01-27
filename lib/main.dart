@@ -5,6 +5,7 @@ import 'package:budgetbuddy/view_models/add_expense_view_model.dart';
 import 'package:budgetbuddy/view_models/forgot_password_view_model.dart';
 import 'package:budgetbuddy/view_models/home_view_model.dart';
 import 'package:budgetbuddy/view_models/login_view_model.dart';
+import 'package:budgetbuddy/view_models/profile_view_model.dart';
 import 'package:budgetbuddy/view_models/signup_view_model.dart';
 import 'package:budgetbuddy/views/boarding/boarding_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (context) => HomeViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => ProfileViewModel(),
             )
           ],
           builder: (context, child) {

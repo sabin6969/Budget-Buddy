@@ -56,10 +56,12 @@ class LoginViewModel with ChangeNotifier, Validation {
 
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
+      showLoadingDialog(context);
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn()
           .signIn()
           .timeout(const Duration(seconds: 10), onTimeout: () {
+        Navigator.pop(context);
         throw TimeoutException("Server request timeout");
       });
 
@@ -87,10 +89,12 @@ class LoginViewModel with ChangeNotifier, Validation {
             profileImageUrl: FirebaseServies.firebaseAuth.currentUser!.photoURL,
             uid: FirebaseServies.firebaseAuth.currentUser!.uid,
           );
+          Navigator.pop(context);
           FirebaseServies.createUserDocument(user);
         }
         Navigator.pushReplacementNamed(context, RouteNames.homeView);
       }).onError((error, stackTrace) {
+        Navigator.pop(context);
         if (error is FirebaseAuthException) {
           showToastMessage(message: error.message ?? "An error occured");
           return;

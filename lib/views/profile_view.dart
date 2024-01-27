@@ -2,9 +2,11 @@ import 'package:budgetbuddy/constants/app_image_path.dart';
 import 'package:budgetbuddy/constants/firebase_services.dart';
 import 'package:budgetbuddy/main.dart';
 import 'package:budgetbuddy/models/user.dart';
+import 'package:budgetbuddy/view_models/profile_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ProfileView extends StatefulWidget {
   final UserModel? me;
@@ -20,6 +22,8 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
+    final ProfileViewModel profileViewModel =
+        Provider.of<ProfileViewModel>(context);
     size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
@@ -147,7 +151,9 @@ class _ProfileViewState extends State<ProfileView> {
                           Icons.logout_outlined,
                           size: 26.w,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          profileViewModel.signOut(context);
+                        },
                         title: Text(
                           "Logout",
                           style:
