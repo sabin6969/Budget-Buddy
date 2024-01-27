@@ -51,7 +51,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: size.height * 0.9,
+          height: size.height * 0.85,
           child: Stack(
             children: [
               Container(
@@ -152,7 +152,6 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                                 ? "This field is required"
                                 : null,
                             controller: _descriptionController,
-                            maxLines: 2,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium!

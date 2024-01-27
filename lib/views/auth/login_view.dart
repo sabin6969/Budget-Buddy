@@ -137,7 +137,9 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 CustomAuthButton(
                   buttonName: "Sign Up with Google",
-                  onPressed: () {},
+                  onPressed: () {
+                    loginViewModel.signInWithGoogle(context);
+                  },
                   logoPath: AppImagePath.googleLogo,
                 ),
                 SizedBox(
