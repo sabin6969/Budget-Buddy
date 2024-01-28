@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:budgetbuddy/constants/route_names.dart';
+import 'package:budgetbuddy/constants/shared_prefs_helpers.dart';
 import 'package:budgetbuddy/models/user.dart';
 import 'package:budgetbuddy/utils/dialog.dart';
 import 'package:budgetbuddy/utils/toast_message.dart';
@@ -29,9 +30,11 @@ class LoginViewModel with ChangeNotifier, Validation {
             throw TimeoutException("Please check your internet connection");
           },
         ).then((value) {
-          // hiding progress dialog
-          Navigator.of(context).pop();
-          Navigator.pushReplacementNamed(context, RouteNames.homeView);
+          SharedPrefsHelper.setEmail(email).then((value) {
+            // hiding progress dialog
+            Navigator.of(context).pop();
+            Navigator.pushReplacementNamed(context, RouteNames.homeView);
+          });
         }).onError((error, stackTrace) {
           // hiding progress dialog
           Navigator.of(context).pop();
@@ -82,17 +85,27 @@ class LoginViewModel with ChangeNotifier, Validation {
         throw TimeoutException("Server request timeout");
       }).then((userCredential) {
         if (userCredential.additionalUserInfo!.isNewUser) {
-          user = UserModel(
-            displayName: FirebaseServies.firebaseAuth.currentUser!.displayName,
-            description: "Hey there i am using Budget Buddy",
-            memberSince: DateTime.now().toString().substring(0, 10),
-            profileImageUrl: FirebaseServies.firebaseAuth.currentUser!.photoURL,
-            uid: FirebaseServies.firebaseAuth.currentUser!.uid,
-          );
-          Navigator.pop(context);
-          FirebaseServies.createUserDocument(user);
+          SharedPrefsHelper.setEmail(
+            FirebaseServies.firebaseAuth.currentUser!.email!,
+          ).then((value) {
+            user = UserModel(
+              displayName:
+                  FirebaseServies.firebaseAuth.currentUser!.displayName,
+              description: "Hey there i am using Budget Buddy",
+              memberSince: DateTime.now().toString().substring(0, 10),
+              profileImageUrl:
+                  FirebaseServies.firebaseAuth.currentUser!.photoURL,
+              uid: FirebaseServies.firebaseAuth.currentUser!.uid,
+            );
+            Navigator.pop(context);
+            FirebaseServies.createUserDocument(user);
+          });
         }
-        Navigator.pushReplacementNamed(context, RouteNames.homeView);
+        SharedPrefsHelper.setEmail(
+                FirebaseServies.firebaseAuth.currentUser!.email!)
+            .then((value) {
+          Navigator.pushReplacementNamed(context, RouteNames.homeView);
+        });
       }).onError((error, stackTrace) {
         Navigator.pop(context);
         if (error is FirebaseAuthException) {
