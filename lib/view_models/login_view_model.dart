@@ -104,7 +104,10 @@ class LoginViewModel with ChangeNotifier, Validation {
     } on TimeoutException {
       showToastMessage(message: "Server request timeout");
     } catch (e) {
-      showToastMessage(message: e.toString());
+      if (context.mounted) {
+        Navigator.pop(context);
+      }
+      showToastMessage(message: "Sign up with google terminated");
     }
   }
 }
