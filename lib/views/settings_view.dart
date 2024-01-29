@@ -21,15 +21,17 @@ class _SettingsViewState extends State<SettingsView> {
 
   @override
   Widget build(BuildContext context) {
-    final SettingsViewModel settingsViewModel =
-        Provider.of(context, listen: false);
+    final SettingsViewModel settingsViewModel = Provider.of(
+      context,
+      listen: false,
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Column(
             children: [
               ListTile(
@@ -46,7 +48,7 @@ class _SettingsViewState extends State<SettingsView> {
                 title: Text(
                   "Set Monthly Budget",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontSize: 14.w,
+                        fontSize: 16.w,
                       ),
                 ),
               ),
@@ -60,7 +62,7 @@ class _SettingsViewState extends State<SettingsView> {
                   Text(
                     "Made with ❤️ with Flutter",
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontSize: 14.w,
+                          fontSize: 16.w,
                         ),
                   )
                 ],
@@ -81,7 +83,7 @@ class _SettingsViewState extends State<SettingsView> {
                 title: Text(
                   "Help",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontSize: 14.w,
+                        fontSize: 16.w,
                       ),
                 ),
               ),

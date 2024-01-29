@@ -1,3 +1,4 @@
+import 'package:budgetbuddy/constants/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,6 +13,7 @@ class SettingsViewModel with ChangeNotifier {
         return AlertDialog(
           title: const Text("Set monthly budget"),
           content: TextFormField(
+            controller: budgetController,
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   fontSize: 14.w,
                 ),
@@ -24,7 +26,12 @@ class SettingsViewModel with ChangeNotifier {
           ),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                FirebaseServies.setMonthlyBudget(
+                  double.tryParse(budgetController.text) ?? 0,
+                );
+                Navigator.pop(context);
+              },
               child: const Text("Add"),
             ),
             TextButton(

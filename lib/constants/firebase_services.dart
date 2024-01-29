@@ -1,3 +1,4 @@
+import 'package:budgetbuddy/utils/toast_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:budgetbuddy/models/user.dart';
@@ -20,5 +21,20 @@ class FirebaseServies {
         .doc(firebaseAuth.currentUser!.uid)
         .get();
     me = UserModel.fromJson(snapshot.data()!);
+  }
+
+  static void setMonthlyBudget(double amount) {
+    firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .update(
+      {
+        "monthlyBudget": amount,
+      },
+    ).then((value) {
+      showToastMessage(
+        message: "Monthly budget updated",
+      );
+    });
   }
 }
