@@ -38,23 +38,53 @@ class _ProfileViewState extends State<ProfileView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 5.h,
+                height: 10.h,
               ),
-              CircleAvatar(
-                radius: 60.w,
-                backgroundImage: widget.me!.profileImageUrl == null
-                    ? const AssetImage(
-                        AppImagePath.defaultAvatar,
-                      )
-                    : NetworkImage(
-                        widget.me!.profileImageUrl!,
-                      ) as ImageProvider,
+              Card(
+                elevation: 2,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10.w,
+                    ),
+                  ),
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 60.w,
+                        backgroundImage: widget.me!.profileImageUrl == null
+                            ? const AssetImage(
+                                AppImagePath.defaultAvatar,
+                              )
+                            : NetworkImage(
+                                widget.me!.profileImageUrl!,
+                              ) as ImageProvider,
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Text(
+                        FirebaseServies.firebaseAuth.currentUser!.email!,
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                              fontSize: 16.w,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                        softWrap: true,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10.h,
               ),
               Card(
-                elevation: 5,
+                elevation: 2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     10.w,
@@ -66,17 +96,6 @@ class _ProfileViewState extends State<ProfileView> {
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
                   child: Column(
                     children: [
-                      Text(
-                        FirebaseServies.firebaseAuth.currentUser!.email!,
-                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                              fontSize: 16.w,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
                       TextFormField(
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
                               fontSize: 12.w,
