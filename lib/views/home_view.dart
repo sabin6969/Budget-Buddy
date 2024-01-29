@@ -68,6 +68,15 @@ class _HomeViewState extends State<HomeView> {
               CupertinoIcons.bell,
               size: 25.w,
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteNames.settingsView);
+            },
+            icon: Icon(
+              Icons.settings,
+              size: 25.w,
+            ),
           )
         ],
       ),

@@ -7,4 +7,5 @@ class RouteNames {
   static const String homeView = "/homeView";
   static const String addExpenseView = "/addExpenseView";
   static const String profileView = "/profileView";
+  static const String settingsView = "/settingsView";
 }

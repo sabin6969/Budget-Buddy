@@ -7,6 +7,7 @@ import 'package:budgetbuddy/view_models/forgot_password_view_model.dart';
 import 'package:budgetbuddy/view_models/home_view_model.dart';
 import 'package:budgetbuddy/view_models/login_view_model.dart';
 import 'package:budgetbuddy/view_models/profile_view_model.dart';
+import 'package:budgetbuddy/view_models/settings_view_model.dart';
 import 'package:budgetbuddy/view_models/signup_view_model.dart';
 import 'package:budgetbuddy/views/boarding/boarding_view.dart';
 import 'package:budgetbuddy/views/home_view.dart';
@@ -65,7 +66,10 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (context) => ProfileViewModel(),
-            )
+            ),
+            ChangeNotifierProvider(
+              create: (context) => SettingsViewModel(),
+            ),
           ],
           builder: (context, child) {
             return MaterialApp(

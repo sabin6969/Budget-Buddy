@@ -6,6 +6,7 @@ import 'package:budgetbuddy/views/auth/login_view.dart';
 import 'package:budgetbuddy/views/auth/signup_view.dart';
 import 'package:budgetbuddy/views/home_view.dart';
 import 'package:budgetbuddy/views/profile_view.dart';
+import 'package:budgetbuddy/views/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -35,6 +36,10 @@ class Routes {
         return MaterialPageRoute(builder: (context) {
           return const ProfileView();
         });
+      case RouteNames.settingsView:
+        return MaterialPageRoute(
+          builder: (context) => const SettingsView(),
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(),

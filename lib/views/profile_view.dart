@@ -98,7 +98,7 @@ class _ProfileViewState extends State<ProfileView> {
                     children: [
                       TextFormField(
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                              fontSize: 12.w,
+                              fontSize: 14.w,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -115,7 +115,7 @@ class _ProfileViewState extends State<ProfileView> {
                       ),
                       TextFormField(
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                              fontSize: 12.w,
+                              fontSize: 14.w,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -143,8 +143,8 @@ class _ProfileViewState extends State<ProfileView> {
                         title: Text(
                           "Export Data",
                           style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    fontSize: 13.w,
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 14.w,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -152,8 +152,8 @@ class _ProfileViewState extends State<ProfileView> {
                         subtitle: Text(
                           "Get data into your local machine",
                           style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    fontSize: 10.w,
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 12.w,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -176,8 +176,8 @@ class _ProfileViewState extends State<ProfileView> {
                         title: Text(
                           "Logout",
                           style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    fontSize: 13.w,
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 14.w,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -185,8 +185,8 @@ class _ProfileViewState extends State<ProfileView> {
                         subtitle: Text(
                           "Logout from this device",
                           style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    fontSize: 10.w,
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 12.w,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
