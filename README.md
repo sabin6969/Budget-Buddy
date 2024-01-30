@@ -1,1 +1,1 @@
-A Flutter App
+A flutter mobile app that is responsible for Tracking Daily Expenses
